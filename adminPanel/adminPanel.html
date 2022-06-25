@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Courier Tracker</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="nav">
+                <div class="logo-holder">Abc Couriers</div>
+                <div class="nav-holder">
+                    <a href="#">Home</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Sign In</a>
+                    <a href="#">About Us</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="left-menu" data-collapse="false">
+                <div class="user-info">
+                    <div class="user-img"><img src="../resources/profile-img.png" alt="" srcset=""></div>
+                    <div class="user-name">User Sood</div>
+                </div>
+                <div class="menu-tabs">
+                    <div class="menu-tab">
+                        <i class="fa fa-user"></i>
+                        <span>Users</span>
+                    </div>
+                    <div class="menu-tab active">
+                        <i class="fa fa-archive"></i>
+                        <span>Couriers</span>
+                    </div>
+                    <div class="menu-tab">
+                        <i class="fa fa-database"></i>
+                        <span>Database</span>
+                    </div>
+                </div>
+                <div class="collapse-btn"><i class="fa fa-minus-square"></i></div>
+            </div>
+            <div class="right-section">
+                <div class="right-top-bar"></div>
+                <div class="content-holder">
+                    <div class="tools">
+                        <!-- <div class="tools-heading">Tools</div> -->
+                            <div class="tools-holder">
+                                <div class="tool-container">
+                                    <div class="tool" id="tool-1">
+                                        <div class="tool-img"><i class="fa fa-user"></i></div>
+                                        <div class="tool-title">Approve Users</div>
+                                    </div>
+                                </div>
+                                <div class="tool-container">
+                                    <div class="tool" id="tool-2">
+                                        <div class="tool-img"><i class="fa fa-archive"></i></div>
+                                        <div class="tool-title">Update Order</div>
+                                    </div>
+                                </div>
+                                <div class="tool-container">
+                                    <div class="tool" id="tool-3">
+                                        <div class="tool-img"><i class="fa fa-cogs"></i></div>
+                                        <div class="tool-title">Database Tools</div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="search-box-holder">
+                        <div class="search-holder">
+                            <input type="text" name="serach" id="search" placeholder="Tracking id / Mobile Number / Email">
+                            <button>Track</button>
+                        </div>
+                    </div>
+                    <div class="search-results">
+                        <div class="table">
+                            <div class="table-header">
+                                <div class="cell">Id</div>
+                                <div class="cell">Name</div>
+                                <div class="cell">Origin</div>
+                                <div class="cell">Destination</div>
+                                <div class="cell">Operations</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="cell">#12345</div>
+                                <div class="cell">laptop</div>
+                                <div class="cell">Shimla</div>
+                                <div class="cell">Delhi</div>
+                                <div class="cell">
+                                    <a href="#"><i class="fa fa-search"></i></a>
+                                    <a href="#"><i class="fa fa-pencil"></i></a>
+                                    <a href="#"><i class="fa fa-trash"></i></a>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="cell">#12345</div>
+                                <div class="cell">laptop</div>
+                                <div class="cell">Shimla</div>
+                                <div class="cell">Delhi</div>
+                                <div class="cell"></div>
+                            </div>
+                            <div class="table-row">
+                                <div class="cell">#12345</div>
+                                <div class="cell">laptop</div>
+                                <div class="cell">Shimla</div>
+                                <div class="cell">Delhi</div>
+                                <div class="cell"></div>
+                            </div>
+                            <div class="table-row">
+                                <div class="cell">#12345</div>
+                                <div class="cell">laptop</div>
+                                <div class="cell">Shimla</div>
+                                <div class="cell">Delhi</div>
+                                <div class="cell"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-holder">
+                        <div class="timeline">
+                            <div class="timeline-step">
+                                <div class="icon"></div>
+                                <div class="content">
+                                    <div class="heading">
+                                        Shimla
+                                    </div>
+                                    <div class="info">
+                                        Package has left for Chandigarh from Shimla
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="icon"></div>
+                                <div class="content">
+                                    <div class="heading">
+                                        Shimla
+                                    </div>
+                                    <div class="info">
+                                        Package has left for Chandigarh from Shimla
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="icon"></div>
+                                <div class="content">
+                                    <div class="heading">
+                                        Shimla
+                                    </div>
+                                    <div class="info">
+                                        Package has left for Chandigarh from Shimla
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-img-holder">
+                <img src="../resources/footer_image.png" alt="footer">
+            </div>
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-title">Abc Couriers</div>
+                    <div class="footer-info">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium sequi impedit debitis nisi nostrum modi.</div>
+                </div>
+                <div class="footer-contact-us">
+                    <div class="links-title">Contact Us</div>
+                    <ul class="links">
+                        <li class="link"><a href="#">+91-9876543210</a></li>
+                        <li class="link"><a href="#">abccouriers@gmail.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <div class="links-title">Quick Links</div>
+                    <ul class="links">
+                        <li class="link"><a href="#">Home</a></li>
+                        <li class="link"><a href="#">About Us</a></li>
+                        <li class="link"><a href="#">Contact Us</a></li>
+                        <li class="link"><a href="#">Sign In</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../home/script.js"></script>
+    <script>
+        const steps=document.querySelectorAll(".timeline-step .icon");
+        steps.forEach((step,i)=>{
+            step.innerHTML=i+1;
+        })
+    </script>
+    <script>
+        const leftMenu=document.querySelector(".left-menu");
+        const collapseBtn=document.querySelector(".collapse-btn");
+        collapseBtn.addEventListener("click",()=>{
+            if(leftMenu.getAttribute("data-collapse")==="true"){
+                leftMenu.setAttribute("data-collapse","false");
+                collapseBtn.querySelector("i").classList.add("fa-minus-square");
+                collapseBtn.querySelector("i").classList.remove("fa-plus-square");
+            }
+            else{
+                leftMenu.setAttribute("data-collapse","true");
+                collapseBtn.querySelector("i").classList.remove("fa-minus-square");
+                collapseBtn.querySelector("i").classList.add("fa-plus-square");
+            }
+        })
+    </script>
+</body>
+</html>
