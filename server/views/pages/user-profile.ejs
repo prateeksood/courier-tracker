@@ -3,7 +3,7 @@
     <%- include('../partials/header');%>
 <body>
     <div class="container">
-        <%- include('../partials/nav',{activeNav:"admin"});%>
+        <%- include('../partials/nav',{activeNav:"profile"});%>
         <div class="main-content-admin">
             <%- include('../partials/side-bar.ejs',{
                 activeTab:locals.activeTab?locals.activeTab:"profile",
@@ -28,8 +28,26 @@
                 <div class="right-top-bar"></div>
                 <div class="content-holder">
                     
-                    
-                    
+                    <div class="profile-holder">
+                        <div class="profile-picture">
+                            <img src="/images/profile-img.png" alt="Profile Picture">
+                        </div>
+                        <div class="profile">
+                            <div class="name"><%=user.name%></div>
+                            <div class="other-info">
+                                <div class="info">
+                                    <i class="fa fa-envelope"></i> 
+                                    <div class="label">Email</div>
+                                    <div class="value"><%=user.email%></div>
+                                </div>
+                                <div class="info">
+                                    <i class="fa fa-phone"></i>
+                                    <div class="label"> Contact Number</div>
+                                    <div class="value"><%=user.contactNumber%></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
                 

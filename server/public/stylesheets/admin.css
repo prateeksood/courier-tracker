@@ -112,10 +112,70 @@
     overflow-y: scroll;
     padding:20px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .content-holder::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
+}
+.profile-holder{
+    margin-top: 100px;
+    background: #fff;
+    width:380px;
+    position: relative;
+    box-shadow: -2px 1px 10px 1px #eee,
+                2px 1px 10px 1px #777;
+    border-radius: 10px;
+    padding:0 20px 50px 20px;
+}
+.profile-holder .profile-picture{
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right:0;
+    top:-75px;
+    margin-left: auto; 
+    margin-right: auto; 
+    height:150px;
+    width: 150px;
+    box-shadow: 1px -2px 10px 1px #eee,
+                2px 1px 10px 1px #777;
+}
+.profile-holder .profile-picture img{
+    height: 85%;
+}
+.profile-holder .profile{
+    margin-top: 80px;
+}
+.profile-holder .profile .name{
+    color:#e87d33;
+    text-align: center;
+    font-size: 2rem;
+    padding-block: 20px;
+}
+.profile-holder .profile .other-info{
+    margin-top: 30px;
+}
+.profile-holder .profile .other-info .info{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.profile-holder .profile .other-info .info .label{
+    flex:1;
+    align-self:center;
+    font-weight: 900;
+}
+.profile-holder .profile .other-info .info .value{
+    flex:3;
+    align-self:center;
 }
 .right-section .tools{
     display: flex;
