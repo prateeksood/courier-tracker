@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/header');%>
+<body>
+    <div class="container">
+        <%- include('../partials/nav',{activeNav:"login"});%>
+        <div class="main-content-sign-up">
+            <div class="form-holder">
+                <div class="heading">Sign In</div>
+                <% if (locals.formError){ %>
+                    <div class="form-error">
+                        <%= formError %>
+                    </div>
+                <%}%>
+                <form action="/user/login" method="post">
+                    <input type="email" name="email" id="email" placeholder="Email" autocomplete="off" required
+                        <% if(locals.formData?.email){ %> 
+                            value="<%= formData?.email %>"
+                        <% } %> 
+                    >
+                    <input type="password" name="password" id="password" placeholder="Password"autocomplete="off" required>
+                    <input type="submit" value="Sign In">
+                    <div class="option-link">New here? <a href="/user/register">Sign Up</a></div>
+                </form>
+            </div>
+        </div>
+        <%- include('../partials/footer');%>
+    </div>
+    <%- include('../partials/scripts');%>
+</body>
+</html>

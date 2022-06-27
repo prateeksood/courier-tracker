@@ -76,9 +76,20 @@ body{
 .nav .nav-holder a:hover{
     color: #ED6733;
 }
-.nav-hidden .logo-holder{
+.nav-holder a.nav-active{
+    color: #ED6733;
+}
+.nav-holder a.nav-active::after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
     
 }
+.nav-visible .nav-holder a.nav-active{
+    color:#fff;
+}
+/* .nav-hidden .logo-holder{
+    
+} */
 .nav-visible .logo-holder{
     background-image: linear-gradient(to right bottom, #fff, #fff);
 
@@ -93,50 +104,74 @@ body{
 .nav-visible .nav-holder a:hover{
     color: #fff;
 }
-/* ================================ */
+.container .banner{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+}
+.container .banner .banner-left{
+    width:60%;
+    padding-top:150px;
+    padding-bottom:150px;
+    padding-right: 100px;
+}
+.banner-left-lead-text{
+    font-size: 4rem;
+    margin-bottom: 30px;
+    font-weight: 900;
+}
+.banner-left-follow-text{
+    font-size: 1.3rem;
+    color: #777;
+    margin-bottom: 80px;
+}
+.tracker-holder{
+    width:350px;
+    border-radius: 50px;
+    box-shadow: 1px 1px 10px 1px #ccc ;
+    display: flex;
+}
+.tracker-holder #tracking-input,.tracker-holder #tracking-btn{
+    padding: 15px;
+    outline: none;
+    border: none;
+}
+.tracker-holder #tracking-input{
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    flex:3 0 0;
+    
+
+}
+.tracker-holder #tracking-btn{
+    background-image: linear-gradient(to right bottom, #ed6733, #ed6733, #ed6733, #ed6733, #ed6733, #ec6a33, #ec6d32, #eb7032, #ea7732, #e87d33, #e78435, #e58a37);
+    color:#fff;
+    flex:1 0 0;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+.tracker-holder #tracking-btn:hover{
+    transform: scale(0.97);
+}
+.container .banner .banner-right{
+    width:40%;
+    padding:100px 10px;
+}
 
 .main-content{
-    padding:50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background:#ED6733;
-    background-image: url("../resources/bg.png");
-    height: 105vh;
+    /* background-image: linear-gradient(to right bottom, #ed6733, #ed6733, #ed6733, #ed6733, #ed6733, #ec6a33, #ec6d32, #eb7032, #ea7732, #e87d33, #e78435, #e58a37); */
+    height:200vh;
+    padding: 0 50px;
+    background-color: #ED6733;
+    background-image: url("../images/bg.png");
+    /* background-size: cover; */
+    background-repeat: no-repeat;
 }
-.form-holder{
-    background: rgba(226, 224, 224, 0.5);
-    border-radius: 10px;;
-    width:400px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.form-holder .heading{
-    color:#e87d33;
-    padding-top:50px;
-    font-size: 2rem;
-}
-.form-holder form{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-}
-.form-holder form input{
-    padding:15px;
-    border-radius: 10px;
-    border:none;
-    margin-block: 10px;
-}
-input[type="submit"]{
-    background:#ED6733;
-    cursor: pointer;
-    color:#fff;
-}
-/* ================================ */
+
 .footer{
-    background:#ED6733;
+    background: #ED6733;
 }
 .footer-img-holder{
     display: flex;
@@ -178,4 +213,27 @@ input[type="submit"]{
 .links .link {
     padding: 10px;
 
+}
+.alert-message{
+    width: 100%;
+    text-align: center;
+    display:flex;
+}
+.alert-message.error{
+    background: pink;
+    color:red;
+}
+.alert-message.success{
+    background: rgb(202, 244, 202);
+    color:green;
+}
+.alert-message .message-text{
+    flex: 1;
+    padding:10px;
+}
+.alert-message .close-btn{
+    padding:10px;
+    padding-inline: 20px;
+    font-weight: 900;
+    cursor: pointer;
 }

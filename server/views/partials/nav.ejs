@@ -1,0 +1,42 @@
+<div class="header">
+    <div class="nav">
+        <div class="logo-holder"><a href="/">Abc Couriers</a> </div>
+        <div class="nav-holder">
+            <a 
+                <% if(locals.activeNav==="home"){ %> 
+                    class="nav-active"
+                <%}%>
+                href="/"
+            >Home</a>
+            <a href="#"
+                <% if(locals.activeNav==="aboutUs"){ %> 
+                    class="nav-active"
+                <%}%>
+            >About Us</a>
+            <a href="/admin"
+                <% if(locals.activeNav==="admin"){ %> 
+                    class="nav-active"
+                <%}%>
+            >Admin</a>
+            <% if(!locals.user) {%>
+                <a href="/user/login"
+                    <% if(locals.activeNav==="login"){ %> 
+                        class="nav-active"
+                    <%}%>
+                >Login</a>
+            <%}else{%>
+                <a href="/user"
+                    <% if(locals.activeNav==="profile"){ %> 
+                        class="nav-active"
+                    <%}%>
+                >Profile</a> 
+                <a href="/user/logout"
+                    <% if(locals.activeNav==="logout"){ %> 
+                        class="nav-active"
+                    <%}%>
+                >Logout</a> 
+            <%}%>
+        </div>
+    </div>
+    <%- include('./alertMessage.ejs'); %> 
+</div>

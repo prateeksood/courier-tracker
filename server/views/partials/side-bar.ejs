@@ -1,0 +1,27 @@
+<div class="left-menu" data-collapse="false">
+    <div class="user-info">
+        <div class="user-img"><img src="/images/profile-img.png" alt=""></div>
+        <div class="user-name">
+            <% if(locals.user?.name){ %> 
+                <%= user.name %>
+            <%}else{%>
+                username
+            <%}%>
+        </div>
+    </div>
+    <div class="menu-tabs">
+        <%if(locals.menuTabs){%>
+            <%menuTabs.forEach(tab => {%>
+                <a href=<%=tab.url%> class="menu-tab 
+                    <% if(locals.activeTab&&locals.activeTab===tab.key){ %> 
+                        active
+                    <%}%>
+                ">
+                    <i class="<%=tab.icon%>"></i>
+                    <span><%=tab.value%></span>
+                </a>
+            <% })%>
+        <%}%>
+    </div>
+    <div class="collapse-btn"><i class="fa fa-minus-square"></i></div>
+</div>

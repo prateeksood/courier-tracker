@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/header');%>
+<body>
+    <div class="container">
+        <%- include('../partials/nav',{activeNav:"admin"});%>
+        <div class="main-content-admin">
+            <%- include('../partials/side-bar.ejs',{
+                activeTab:locals.activeTab?locals.activeTab:"couriers",
+                user:locals.user?locals.user:null,
+                menuTabs:[
+                    {
+                        icon:"fa fa-user",
+                        value:"Users",
+                        key:"users",
+                        url:"/admin/users",
+                    },
+                    {
+                        icon:"fa fa-archive",
+                        value:"Couriers",
+                        key:"couriers",
+                        url:"/admin/couriers",
+                    },
+                    {
+                        icon:"fa fa-database",
+                        value:"Database",
+                        key:"database",
+                        url:"/admin/database",
+                    }
+                ]
+            });
+            %> 
+            <div class="right-section">
+                <div class="right-top-bar"></div>
+                <div class="content-holder">
+                    
+                    <div class="search-box-holder">
+                        <div class="search-holder">
+                            <input type="text" name="serach" id="search" placeholder="Tracking id / Mobile Number / Email">
+                            <button>Track</button>
+                        </div>
+                    </div>
+                    <div class="search-results">
+                        <div class="table">
+                            <div class="table-header">
+                                <div class="cell">Id</div>
+                                <div class="cell">Name</div>
+                                <div class="cell">Origin</div>
+                                <div class="cell">Destination</div>
+                                <div class="cell">Operations</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="cell">#12345</div>
+                                <div class="cell">laptop</div>
+                                <div class="cell">Shimla</div>
+                                <div class="cell">Delhi</div>
+                                <div class="cell">
+                                    <a href="#"><i class="fa fa-search"></i></a>
+                                    <a href="#"><i class="fa fa-pencil"></i></a>
+                                    <a href="#"><i class="fa fa-trash"></i></a>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="cell">#12345</div>
+                                <div class="cell">laptop</div>
+                                <div class="cell">Shimla</div>
+                                <div class="cell">Delhi</div>
+                                <div class="cell"></div>
+                            </div>
+                            <div class="table-row">
+                                <div class="cell">#12345</div>
+                                <div class="cell">laptop</div>
+                                <div class="cell">Shimla</div>
+                                <div class="cell">Delhi</div>
+                                <div class="cell"></div>
+                            </div>
+                            <div class="table-row">
+                                <div class="cell">#12345</div>
+                                <div class="cell">laptop</div>
+                                <div class="cell">Shimla</div>
+                                <div class="cell">Delhi</div>
+                                <div class="cell"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update-box-holder">
+                        <div class="add-holder">
+                            <input type="text" name="location" id="new_loc" placeholder="Add new location">
+                            <button>Add</button>
+                        </div>
+                        <div class="delete-holder">
+                            <button>Delete Order</button>
+                        </div>
+                        <div class="done-holder">
+                            <button>Done</button>
+                        </div>
+                    </div>
+                    <div class="timeline-holder">
+                        <div class="timeline">
+                            <div class="timeline-step">
+                                <div class="icon"></div>
+                                <div class="content">
+                                    <div class="heading">
+                                        Shimla
+                                    </div>
+                                    <div class="info">
+                                        Package has left for Chandigarh from Shimla
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="icon"></div>
+                                <div class="content">
+                                    <div class="heading">
+                                        Shimla
+                                    </div>
+                                    <div class="info">
+                                        Package has left for Chandigarh from Shimla
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="icon"></div>
+                                <div class="content">
+                                    <div class="heading">
+                                        Shimla
+                                    </div>
+                                    <div class="info">
+                                        Package has left for Chandigarh from Shimla
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <%- include('../partials/footer');%>
+    </div>
+    <%- include('../partials/scripts');%>
+</body>
+</html>

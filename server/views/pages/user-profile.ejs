@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/header');%>
+<body>
+    <div class="container">
+        <%- include('../partials/nav',{activeNav:"admin"});%>
+        <div class="main-content-admin">
+            <%- include('../partials/side-bar.ejs',{
+                activeTab:locals.activeTab?locals.activeTab:"profile",
+                user:locals.user?locals.user:null,
+                menuTabs:[
+                    {
+                        icon:"fa fa-user",
+                        value:"Profile",
+                        key:"profile",
+                        url:"/user",
+                    },
+                    {
+                        icon:"fa fa-archive",
+                        value:"Couriers",
+                        key:"couriers",
+                        url:"/user/couriers",
+                    }
+                ]
+            });
+            %> 
+            <div class="right-section">
+                <div class="right-top-bar"></div>
+                <div class="content-holder">
+                    
+                    
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+        <%- include('../partials/footer');%>
+    </div>
+    <%- include('../partials/scripts');%>
+</body>
+</html>

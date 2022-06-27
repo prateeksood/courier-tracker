@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/header');%>
+<body>
+    <div class="container">
+        <%- include('../partials/nav',{activeNav:"login"});%>
+        <div class="main-content-sign-up">
+            <div class="form-holder">
+                <div class="heading">Sign Up</div>
+                <% if (locals.formError){ %>
+                    <div class="form-error">
+                        <%= formError %>
+                    </div>
+                <%}%>
+                <form action="/user/register" method="post">
+                    <input type="text" name="name" id="name" placeholder="Name" autocomplete="off" required 
+                        <% if(locals.formData?.name){ %> 
+                        value="<%= formData?.name %>"
+                        <% } %> 
+                    >
+                    <input type="email" name="email" id="email" placeholder="Email" autocomplete="off" required
+                        <% if(locals.formData?.email){ %> 
+                            value="<%= formData?.email %>"
+                        <% } %> 
+                    >
+                    <input type="password" name="password" id="password" placeholder="Password"autocomplete="off" required>
+                    <input type="password" name="confirmPassword" id="confirm-password" placeholder="Confirm Password"autocomplete="off" required>
+                    <input type="text" name="contactNumber" id="contact-number" placeholder="Contact Number" autocomplete="off" required
+                        <% if(locals.formData?.contactNumber){ %> 
+                            value="<%= formData.contactNumber %>"
+                        <% } %> 
+                    >
+                    <input type="submit" value="Sign Up">
+                    <div class="option-link">Already registered? <a href="/user/login">Sign In</a></div>
+
+                </form>
+            </div>
+        </div>
+        <%- include('../partials/footer');%>
+    </div>
+    <%- include('../partials/scripts');%>
+</body>
+</html>
