@@ -29,7 +29,7 @@
     height: 70px;
     width: 70px;
     border-radius: 50%;
-    background-color: #e87d33;
+    background-color: #ED6733;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,7 +60,7 @@
 }
 .left-menu .menu-tabs .menu-tab.active{
     background-color: #eee;
-    color:#e87d33;
+    color:#ED6733;
 }
 .left-menu .menu-tabs .menu-tab i{
     padding-inline: 10px;
@@ -90,7 +90,7 @@
     bottom: 0;
     padding: 10px;
     font-size: 2rem;
-    color:#e87d33;
+    color:#ED6733;
     cursor:pointer;
 }
 .right-section{
@@ -115,6 +115,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* background-image: url(/images/bg.png); */
+
 }
 .content-holder::-webkit-scrollbar {
     width: 0px;
@@ -154,7 +156,7 @@
     margin-top: 80px;
 }
 .profile-holder .profile .name{
-    color:#e87d33;
+    color:#ED6733;
     text-align: center;
     font-size: 2rem;
     padding-block: 20px;
@@ -186,7 +188,7 @@
     padding: 10px;
 }
 .tools-heading{
-    color:#e87d33;
+    color:#ED6733;
     padding-block: 20px;
     text-align: center;
     font-size: 2rem;
@@ -209,7 +211,7 @@
     cursor: pointer;
 }
 .tool{
-    background: #e87d33;
+    background: #ED6733;
     height: 100%;
     width: 100%;
     border-radius: 50%;
@@ -267,7 +269,7 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     border:none;
-    background: #e87d33;
+    background: #ED6733;
     color:#fff;
 }
 .search-results{
@@ -283,6 +285,12 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     flex-direction: column;
     border-radius: 10px;
 }
+.table .table-head{
+    padding-top:50px ;
+    padding-bottom:20px ;
+    font-size: 1.5rem;
+    color:#ED6733
+}
 .table-header,.table-row{
     display: flex;
     width: 100%;
@@ -295,7 +303,7 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     border-bottom-right-radius: 10px;
 }
 .table-header{
-    background: #e87d33;
+    background: #ED6733;
     color: #fff;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -306,7 +314,7 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
 }
 .table-row .cell a{
     color:#fff;
-    background: #e87d33;
+    background: #ED6733;
     border-radius: 50%;
     padding: 5px 7px;
 }
@@ -343,7 +351,7 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     border:none;
-    background: #e87d33;
+    background: #ED6733;
     color:#fff;
 }
 .delete-holder{
@@ -358,7 +366,7 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     padding: 10px;
     border-radius: 50px;
     border:none;
-    background: #e87d33;
+    background: #ED6733;
     color:#fff;
 }
 .done-holder{
@@ -373,9 +381,49 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     padding: 10px;
     border-radius: 50px;
     border:none;
-    background: rgb(91, 227, 91);
+    background: #ED6733;
     color:#fff;
 }
+/* ==========================Order form=========================================== */
+
+.order-box-holder{
+    width:100%;
+    height: 85vh;
+    display: flex;
+    background-image: url(/images/bg.png);
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 1px 10px 1px #ddd;
+    padding:50px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+.text-holder{
+    width:350px;
+    display: flex;
+    margin: 5px;
+    border-radius: 50px;
+    box-shadow: -1px 1px 10px 1px #ddd;
+}
+.text-holder input{
+    flex: 3 0 0;
+    padding: 10px;
+    border-radius: 50px;
+    border:none;
+}
+.text-holder select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 50px;
+    border:none;
+    padding-right: 30px;
+    color:#777;
+
+}
+/* ==========================Order Timeline=========================================== */
 .timeline-holder{
     width:100%;
     box-shadow: 1px 1px 10px 1px #ddd;
@@ -396,14 +444,14 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     padding: 20px;
 }
 .timeline-step .content .heading{
-    color: #e87d33;
+    color: #ED6733;
     font-size: 1.3rem;
     padding-bottom:10px ;
 }
 .timeline-step .icon{
     height: 30px;
     width:30px;
-    background: #e87d33;
+    background: #ED6733;
     border-radius: 50%;
     display: flex;
     justify-content: center;

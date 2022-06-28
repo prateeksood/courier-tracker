@@ -1,9 +1,10 @@
 
 const router = require("express").Router();
 const UserController = require("../controllers/user.controller");
+const OrderService = require("../services/order.service");
 const customAsync = require("../helpers/customAsync");
 const authMiddleware = require("../middleware/auth.middleware");
-
+const cities= require("../helpers/cities")
 router.get("/register", (request, response,next)=> {
     request.session.userId = null;
     response.render("pages/register");
@@ -17,9 +18,25 @@ router.get("/", authMiddleware,(request, response,next)=> {
         user:request.user
     });
 })
-router.get("/couriers", authMiddleware,(request, response,next)=> {  
+router.get("/couriers", authMiddleware,async(request, response,next)=> {  
+    let conditions=[
+        { key: "senderId", value: request.user.id }
+      ]
+    const fromTheUserOrders = await OrderService.fetchOrdersByParams(conditions);
+    conditions=[
+        { key: "receiverId", value: request.user.id }
+      ]
+    const toTheUserOrders = await OrderService.fetchOrdersByParams(conditions);
     response.render("pages/user-couriers",{
-        user:request.user
+        user:request.user,
+        fromTheUserOrders,
+        toTheUserOrders
+    });
+})
+router.get("/couriers/new", authMiddleware,(request, response,next)=> {  
+    response.render("pages/user-new-courier",{
+        user:request.user,
+        cities
     });
 })
 router.post("/register",customAsync(UserController.registerUser));

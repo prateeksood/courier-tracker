@@ -19,7 +19,13 @@
                         icon:"fa fa-archive",
                         value:"Couriers",
                         key:"couriers",
-                        url:"/use/couriers"
+                        url:"/user/couriers"
+                    },
+                    {
+                        icon:"fa fa-plus",
+                        value:"New Courier",
+                        key:"new-courier",
+                        url:"/user/couriers/new"
                     }
                 ]
             });
@@ -36,6 +42,7 @@
                     </div>
                     <div class="search-results">
                         <div class="table">
+                            <div class="table-head">Sent Orders</div>
                             <div class="table-header">
                                 <div class="cell">Id</div>
                                 <div class="cell">Name</div>
@@ -43,54 +50,38 @@
                                 <div class="cell">Destination</div>
                                 <div class="cell">Operations</div>
                             </div>
-                            <div class="table-row">
-                                <div class="cell">#12345</div>
-                                <div class="cell">laptop</div>
-                                <div class="cell">Shimla</div>
-                                <div class="cell">Delhi</div>
-                                <div class="cell">
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                    <a href="#"><i class="fa fa-pencil"></i></a>
-                                    <a href="#"><i class="fa fa-trash"></i></a>
+                            <%fromTheUserOrders?.forEach(order=>{%>
+                                <div class="table-row">
+                                    <div class="cell"><%= order.id%></div>
+                                    <div class="cell"><%= order.name%></div>
+                                    <div class="cell"><%= order.origin%></div>
+                                    <div class="cell"><%= order.destination%></div>
+                                    <div class="cell actions">
+                                        <a href="#" title="view"><i class="fa fa-search"></i></a>
+                                    </div>
                                 </div>
-                            </div>
+                            <%})%>
                         </div>
-                    </div>
-                    <div class="timeline-holder">
-                        <div class="timeline">
-                            <div class="timeline-step">
-                                <div class="icon"></div>
-                                <div class="content">
-                                    <div class="heading">
-                                        Shimla
-                                    </div>
-                                    <div class="info">
-                                        Package has left for Chandigarh from Shimla
+                        <div class="table">
+                            <div class="table-head">Received/Arriving Orders</div>
+                            <div class="table-header">
+                                <div class="cell">Id</div>
+                                <div class="cell">Name</div>
+                                <div class="cell">Origin</div>
+                                <div class="cell">Destination</div>
+                                <div class="cell">Operations</div>
+                            </div>
+                            <%toTheUserOrders?.forEach(order=>{%>
+                                <div class="table-row">
+                                    <div class="cell"><%= order.id%></div>
+                                    <div class="cell"><%= order.name%></div>
+                                    <div class="cell"><%= order.origin%></div>
+                                    <div class="cell"><%= order.destination%></div>
+                                    <div class="cell actions">
+                                        <a href="#" title="view"><i class="fa fa-search"></i></a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="timeline-step">
-                                <div class="icon"></div>
-                                <div class="content">
-                                    <div class="heading">
-                                        Shimla
-                                    </div>
-                                    <div class="info">
-                                        Package has left for Chandigarh from Shimla
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="timeline-step">
-                                <div class="icon"></div>
-                                <div class="content">
-                                    <div class="heading">
-                                        Shimla
-                                    </div>
-                                    <div class="info">
-                                        Package has left for Chandigarh from Shimla
-                                    </div>
-                                </div>
-                            </div>
+                            <%})%>
                         </div>
                     </div>
                 </div>
@@ -100,5 +91,14 @@
         <%- include('../partials/footer');%>
     </div>
     <%- include('../partials/scripts');%>
+    <script>
+        const viewBtns=document.querySelectorAll(".actions a");
+        viewBtns.forEach(btn=>{
+            btn.addEventListener("click",(e)=>{
+                e.preventDefault();
+                console.log("hello");
+            })
+        })
+    </script>
 </body>
 </html>

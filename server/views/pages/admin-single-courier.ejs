@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/header');%>
+<body>
+    <div class="container">
+        <%- include('../partials/nav',{activeNav:"admin"});%>
+        <div class="main-content-admin">
+            <%- include('../partials/side-bar.ejs',{
+                activeTab:locals.activeTab?locals.activeTab:"couriers",
+                user:locals.user?locals.user:null,
+                menuTabs:[
+                    {
+                        icon:"fa fa-user",
+                        value:"Users",
+                        key:"users",
+                        url:"/admin/users",
+                    },
+                    {
+                        icon:"fa fa-archive",
+                        value:"Couriers",
+                        key:"couriers",
+                        url:"/admin/couriers",
+                    },
+                    {
+                        icon:"fa fa-database",
+                        value:"Database",
+                        key:"database",
+                        url:"/admin/database",
+                    }
+                ]
+            });
+            %> 
+            <div class="right-section">
+                <div class="right-top-bar"></div>
+                <div class="content-holder">                    
+                    
+                    <div class="timeline-holder">
+                        <div class="timeline">
+                            <%orderLocations.forEach((location,i)=>{%>
+                                <div class="timeline-step">
+                                    <div class="icon"></div>
+                                    <div class="content">
+                                        <div class="heading">
+                                            <%=location.currentLocation%>
+                                        </div>
+                                        <div class="info">
+                                            Package has reached 
+                                            <%=location.currentLocation%>
+                                             from 
+                                            <%=location.previousLocation%>
+                                             <%=location.dateString%>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%})%>
+                        </div>
+                    </div>
+                    <div class="update-box-holder">
+                        <div class="add-holder">
+                            <input type="text" name="location" id="new_loc" placeholder="Add new location">
+                            <button>Add</button>
+                        </div>
+                        <!-- <div class="delete-holder">
+                            <button>Delete Order</button>
+                        </div>
+                        <div class="done-holder">
+                            <button>Done</button>
+                        </div> -->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <%- include('../partials/footer');%>
+    </div>
+    <%- include('../partials/scripts');%>
+</body>
+</html>

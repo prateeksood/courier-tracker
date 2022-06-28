@@ -4,7 +4,7 @@ module.exports=async(request,response,next)=>{
     const {userId}=request.session;
     if(!userId) {
         request.flash("error","Kindly login to continue");
-        return response.redirect("user/login");
+        return response.redirect("/user/login");
     }
     const foundUser=await UserService.fetchUsersByParam({key:"id",value:userId});
     if(foundUser.length>0){

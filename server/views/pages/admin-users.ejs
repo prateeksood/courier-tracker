@@ -44,42 +44,28 @@
                             <div class="table-header">
                                 <div class="cell">Id</div>
                                 <div class="cell">Name</div>
-                                <div class="cell">Origin</div>
-                                <div class="cell">Destination</div>
-                                <div class="cell">Operations</div>
+                                <div class="cell">Email</div>
+                                <div class="cell">Contact Number</div>
+                                <div class="cell">Actions</div>
                             </div>
-                            <div class="table-row">
-                                <div class="cell">#12345</div>
-                                <div class="cell">laptop</div>
-                                <div class="cell">Shimla</div>
-                                <div class="cell">Delhi</div>
-                                <div class="cell">
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                    <a href="#"><i class="fa fa-pencil"></i></a>
-                                    <a href="#"><i class="fa fa-trash"></i></a>
+                            <%allUsers?.forEach(user=>{%>
+
+                                <div class="table-row">
+                                    <div class="cell"><%=user.id%></div>
+                                    <div class="cell"><%=user.name%></div>
+                                    <div class="cell"><%=user.email%></div>
+                                    <div class="cell"><%=user.contactNumber%></div>
+                                    <div class="cell">
+                                        <a href="#"><i class="fa fa-search"></i></a>
+                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                        <a href="#"><i class="fa fa-trash"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="table-row">
-                                <div class="cell">#12345</div>
-                                <div class="cell">laptop</div>
-                                <div class="cell">Shimla</div>
-                                <div class="cell">Delhi</div>
-                                <div class="cell"></div>
-                            </div>
-                            <div class="table-row">
-                                <div class="cell">#12345</div>
-                                <div class="cell">laptop</div>
-                                <div class="cell">Shimla</div>
-                                <div class="cell">Delhi</div>
-                                <div class="cell"></div>
-                            </div>
-                            <div class="table-row">
-                                <div class="cell">#12345</div>
-                                <div class="cell">laptop</div>
-                                <div class="cell">Shimla</div>
-                                <div class="cell">Delhi</div>
-                                <div class="cell"></div>
-                            </div>
+
+                            <%})%>
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>

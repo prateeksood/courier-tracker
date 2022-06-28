@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/header');%>
+<body>
+    <div class="container">
+        <%- include('../partials/nav',{activeNav:"profile"});%>
+        <div class="main-content-admin">
+            <%- include('../partials/side-bar.ejs',{
+                activeTab:locals.activeTab?locals.activeTab:"new-courier",
+                user:locals.user?locals.user:null,
+                menuTabs:[
+                    {
+                        icon:"fa fa-user",
+                        value:"Profile",
+                        key:"profile",
+                        url:"/user",
+                    },
+                    {
+                        icon:"fa fa-archive",
+                        value:"Couriers",
+                        key:"couriers",
+                        url:"/user/couriers"
+                    }
+                    ,
+                    {
+                        icon:"fa fa-plus",
+                        value:"New Courier",
+                        key:"new-courier",
+                        url:"/user/couriers/new"
+                    }
+                ]
+            });
+            %> 
+            <div class="right-section">
+                <div class="right-top-bar"></div>
+                <div class="content-holder">
+                    <form class="order-box-holder" action="/order/create" method="post">
+                        <div class="text-holder">
+                            <input type="text" name="name" id="item_name" placeholder="Item name">
+                        </div>
+                        <div class="text-holder">
+                            <select name="origin" id="origin">
+                                <option value="" disabled selected>Origin City</option>
+                                <%for(key in cities){%>
+                                    <optgroup label="<%=key%>"></optgroup>
+                                        <%cities[key].forEach(city=>{%> 
+                                            <option value="<%=city%>"><%=city%></option>
+                                        <%})%>
+                                    </optgroup>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="text-holder">
+                            <select name="destination" id="destination">
+                                <option value="" disabled selected>Destination City</option>
+                                <%for(key in cities){%>
+                                    <optgroup label="<%=key%>"></optgroup>
+                                        <%cities[key].forEach(city=>{%> 
+                                            <option value="<%=city%>"><%=city%></option>
+                                        <%})%>
+                                    </optgroup>
+                                <%}%>
+                                
+                            </select>
+                        </div>
+                        <div class="text-holder">
+                            <input type="text" name="senderAddress" id="src_address" placeholder="Address of Sender">
+                        </div>
+                        <div class="text-holder">
+                            <input type="text" name="receiverAddress" id="dest_loc" placeholder="Address of receiver">
+                        </div>
+                        
+                        <div class="text-holder">
+                            <input type="text" name="receiverContactNumber" id="rec_contact" placeholder="Contact number of receiver">
+                        </div>
+                        <div class="text-holder">
+                            <input type="text" name="receiverEmail" id="rec_email" placeholder="Email address of receiver">
+                        </div>
+                        <div class="done-holder">
+                            <button>Done</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        <%- include('../partials/footer');%>
+    </div>
+    <%- include('../partials/scripts');%>
+</body>
+</html>

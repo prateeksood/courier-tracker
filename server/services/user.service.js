@@ -1,5 +1,4 @@
 const db=require('../helpers/db');
-const { password } = require('../validation/user.validation');
 module.exports = class UserService {
 
     static fetchAllUsers=async ()=>{
