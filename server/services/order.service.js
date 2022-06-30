@@ -74,8 +74,8 @@ module.exports = class OrderService {
                     "${order.origin}"
                 )`;
         try{
-            await db.query(query);
-            query =`SELECT * FROM courier_tracker.orders WHERE id= LAST_INSERT_ID()`
+            const result=await db.query(query);
+            query =`SELECT * FROM courier_tracker.orders WHERE id=${result.insertId}`
             let createdOrder=await db.query(query);
             return createdOrder;
         }catch(err){
@@ -96,8 +96,8 @@ module.exports = class OrderService {
                     "${order.id}"
                 )`;
         try{
-            await db.query(query);
-            query =`SELECT * FROM courier_tracker.orders WHERE id= LAST_INSERT_ID()`
+            const result=await db.query(query);
+            query =`SELECT * FROM courier_tracker.orders WHERE id= ${result.insertId}`
             let createdOrder=await db.query(query);
             return createdOrder;
         }catch(err){

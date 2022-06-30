@@ -10,9 +10,11 @@ const session= require("express-session");
 const flash=require("connect-flash");
 const flashMiddleware = require("./middleware/flash.middleware");
 const isAdminMiddleware = require("./middleware/isAdmin.middleware");
+const db = require("./helpers/db");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+db.init();
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,

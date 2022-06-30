@@ -36,8 +36,8 @@ module.exports = class UserService {
         let query=`INSERT INTO courier_tracker.users (name,email,password,contactNumber) VALUES ("${user.name}","${user.email}","${user.password}","${user.contactNumber}")`;
         console.log(query);
         try{
-            await db.query(query);
-            query =`SELECT * FROM courier_tracker.users WHERE id= LAST_INSERT_ID()`
+            const result=await db.query(query);
+            query =`SELECT * FROM courier_tracker.users WHERE id= ${result.insertId}`;
             let createdUser=await db.query(query);
             return createdUser;
         }catch(err){

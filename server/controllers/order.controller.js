@@ -104,10 +104,14 @@ module.exports = class orderController {
     data.previousLocation="User";
     data.currentLocation=createdOrder[0].origin;
     await OrderService.updateLocation(data);
-    if (!createdOrder)
-      response.status(400).json({ message: "Unable to create order." });
-    else
-      response.status(200).json({ orders: createdOrder });
+    if (!createdOrder){
+      request.flash("error",`Unable to create order.`);
+      response.redirect("/user/couriers/new");
+    }
+    else{
+      request.flash("success",`Order Successfully created`);
+      response.redirect("/user/couriers/")
+    }
   }
   static async fetchLocationsById(request, response, next) {
     const condition = { key: "orderId", value: request.params.id };
