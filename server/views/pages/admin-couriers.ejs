@@ -35,10 +35,10 @@
                 <div class="content-holder">
                     
                     <div class="search-box-holder">
-                        <div class="search-holder">
-                            <input type="text" name="serach" id="search" placeholder="Tracking id / Mobile Number / Email">
-                            <button>Track</button>
-                        </div>
+                        <form class="search-holder" action="/order/search%>" method="post">
+                            <input type="text" name="search" id="search" placeholder="Tracking id / Mobile Number / Email">
+                            <button type="submit">Search</button>
+                        </form>
                     </div>
                     <div class="search-results">
                         <div class="table">
@@ -57,8 +57,9 @@
                                     <div class="cell"><%=courier.destination%></div>
                                     <div class="cell">
                                         <a href="/order/<%=courier.id%>"><i class="fa fa-search"></i></a>
-                                        <a href="#"><i class="fa fa-pencil"></i></a>
-                                        <a href="#"><i class="fa fa-trash"></i></a>
+                                        <%if(!courier.isDelivered){%>
+                                            <a href="/order/<%=courier.id%>"><i class="fa fa-plus"></i></a>
+                                        <%}%>
                                     </div>
                                 </div>
                             <%})%>

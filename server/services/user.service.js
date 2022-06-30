@@ -12,12 +12,24 @@ module.exports = class UserService {
     }
     static fetchUsersByParam=async (condition)=>{
         let query=`SELECT * FROM courier_tracker.users where ${condition.key} in ("${condition.value}")`;
-        console.log(query);
         try{
             let foundUsers=await db.query(query);
             return foundUsers;
         }catch(err){
             throw Error(`Error while finding Users : ${err.message}`);
+        }
+    }
+    static fetchUsersByParams=async (conditions)=>{
+        let query=`SELECT * FROM courier_tracker.users where ${conditions[0].key} in ("${conditions[0].value}") `;
+        conditions.forEach((condition,i )=> {
+            if(i>=1)
+                query+=`OR ${condition.key} in ("${condition.value}") `;
+        });
+        try{
+            let foundUsers=await db.query(query);
+            return foundUsers;
+        }catch(err){
+            throw Error(`Error while finding users : ${err.message}`);
         }
     }
     static createUser=async (user)=>{
@@ -33,7 +45,13 @@ module.exports = class UserService {
         }
     }
     static updateUser=async (user,condition)=>{
-        let query=`UPDATE courier_tracker.users SET name="${user.name}",password="${user.password}",contactNumber="${user.contactNumber}" WHERE ${condition.key}=${condition.value}`;
+        let query=`UPDATE courier_tracker.users SET `;
+        for(let key in user){
+            query+=` ${key}="${user[key]}",`;
+        }
+        query=query.slice(0,-1);
+        query+=` WHERE ${condition.key}=${condition.value}`
+        console.log(query);
         try{
             await db.query(query);
             query =`SELECT * FROM courier_tracker.users WHERE ${condition.key}=${condition.value}`
@@ -43,6 +61,7 @@ module.exports = class UserService {
             throw Error(`Error while updating User : ${err.message}`);
         }
     }
+
     static deleteUser=async (condition)=>{
         let query=`DELETE FROM courier_tracker.users WHERE ${condition.key}=${condition.value}`;
         try{

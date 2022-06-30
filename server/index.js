@@ -9,6 +9,7 @@ const userMiddleware = require("./middleware/user.middleware");
 const session= require("express-session");
 const flash=require("connect-flash");
 const flashMiddleware = require("./middleware/flash.middleware");
+const isAdminMiddleware = require("./middleware/isAdmin.middleware");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -33,7 +34,7 @@ app.get("/", function (request, response, next) {
   });
 });
 
-app.use("/admin",authMiddleware,AdminRoute);
+app.use("/admin",isAdminMiddleware,AdminRoute);
 app.use("/user",UserRoute);
 app.use("/order",OrderRoute);
 

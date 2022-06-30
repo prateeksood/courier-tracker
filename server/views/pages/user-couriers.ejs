@@ -34,12 +34,12 @@
                 <div class="right-top-bar"></div>
                 <div class="content-holder">
                     
-                    <div class="search-box-holder">
+                    <!-- <div class="search-box-holder">
                         <div class="search-holder">
                             <input type="text" name="serach" id="search" placeholder="Tracking id / Mobile Number / Email">
                             <button>Track</button>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="search-results">
                         <div class="table">
                             <div class="table-head">Sent Orders</div>
@@ -57,7 +57,7 @@
                                     <div class="cell"><%= order.origin%></div>
                                     <div class="cell"><%= order.destination%></div>
                                     <div class="cell actions">
-                                        <a href="#" title="view"><i class="fa fa-search"></i></a>
+                                        <a href="/order/<%=order.id%>" title="view"><i class="fa fa-search"></i></a>
                                     </div>
                                 </div>
                             <%})%>
@@ -78,7 +78,7 @@
                                     <div class="cell"><%= order.origin%></div>
                                     <div class="cell"><%= order.destination%></div>
                                     <div class="cell actions">
-                                        <a href="#" title="view"><i class="fa fa-search"></i></a>
+                                        <a href="/order/<%=order.id%>" title="view"><i class="fa fa-search"></i></a>
                                     </div>
                                 </div>
                             <%})%>
@@ -91,14 +91,5 @@
         <%- include('../partials/footer');%>
     </div>
     <%- include('../partials/scripts');%>
-    <script>
-        const viewBtns=document.querySelectorAll(".actions a");
-        viewBtns.forEach(btn=>{
-            btn.addEventListener("click",(e)=>{
-                e.preventDefault();
-                console.log("hello");
-            })
-        })
-    </script>
 </body>
 </html>

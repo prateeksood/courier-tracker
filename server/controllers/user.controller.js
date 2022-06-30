@@ -18,6 +18,29 @@ module.exports = class userController {
             else
                 response.status(200).json({ users: foundUser });
     }
+    static async searchUser(request, response, next) {
+        if(!request.body.search||request.body.search===""){
+          request.flash("error",`Kindly enter a valid search input`);
+          return response.redirect("/admin/users");
+        }
+        const conditions=[
+          { key: "id", value: request.body.search },
+          { key: "email", value:request.body.search  },
+          { key: "ContactNumber", value: request.body.search  }
+        ]
+        const foundUsers = await UserService.fetchUsersByParams(conditions);
+        if (foundUsers.length<=0){
+          request.flash("error",`No users matching your search input found`);
+          return response.redirect("/admin/users");
+        }
+        else{
+          response.render("pages/admin-users",{
+              activeTab:"users",
+              user:request.user,
+              allUsers:foundUsers
+          });
+        }
+      }
     static async registerUser(request, response,next) {
             request.session.userId = null;
             const hashRounds = 10;
@@ -80,6 +103,18 @@ module.exports = class userController {
         request.session.userId = null;
         request.user=null;
         response.redirect('/user/login');
+    }
+    static async toggleAdminStatus(request, response, next) {
+        const data ={isAdmin: request.query.isAdmin};
+        const condition = { key: "id", value: request.params.id };
+        const updatedUser = await UserService.updateUser(data, condition);
+        if (updatedUser.length <= 0){
+            flash("error", "Unable to complete the request. Please try again later.");
+            response.redirect("/admin/users");
+        }
+        else
+            response.redirect("/admin/users");
+
     }
     static async update(request, response,next) {
             const data = request.body;

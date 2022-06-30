@@ -3,6 +3,9 @@
     padding:0;
     box-sizing: border-box;
 }
+a{
+    text-decoration: none;
+}
 body{
     font-family: "Roboto", sans-serif;
 }
@@ -162,14 +165,56 @@ body{
 
 .main-content{
     /* background-image: linear-gradient(to right bottom, #ed6733, #ed6733, #ed6733, #ed6733, #ed6733, #ec6a33, #ec6d32, #eb7032, #ea7732, #e87d33, #e78435, #e58a37); */
-    height:200vh;
+    /* height:200vh; */
     padding: 0 50px;
     background-color: #ED6733;
     background-image: url("../images/bg.png");
     /* background-size: cover; */
     background-repeat: no-repeat;
 }
-
+.main-content .steps-holder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 120vh;
+}
+.steps-heading-holder{
+    color:#fff;
+    text-align: center;
+    padding-block: 40px;
+}
+.steps-heading-holder .heading{
+    font-size: 3rem;
+    color:#fff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.steps-holder .card-holder{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:80px;
+}
+.steps-holder .card-holder .card{
+    background: #fff;
+    width:300px;
+    padding: 30px;
+    border-radius: 10px;
+    color:#777;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.steps-holder .card-holder .card .icon{
+    font-size: 5rem;
+    color:#ED6733;
+}
+.steps-holder .card-holder .card .card-head{
+    font-size: 1.5rem;
+    padding-block: 10px;
+}
 .footer{
     background: #ED6733;
 }

@@ -4,7 +4,8 @@ const UserController = require("../controllers/user.controller");
 const OrderService = require("../services/order.service");
 const customAsync = require("../helpers/customAsync");
 const authMiddleware = require("../middleware/auth.middleware");
-const cities= require("../helpers/cities")
+const cities= require("../helpers/cities");
+const isAdminMiddleware = require("../middleware/isAdmin.middleware");
 router.get("/register", (request, response,next)=> {
     request.session.userId = null;
     response.render("pages/register");
@@ -40,9 +41,11 @@ router.get("/couriers/new", authMiddleware,(request, response,next)=> {
     });
 })
 router.post("/register",customAsync(UserController.registerUser));
+router.post("/search",isAdminMiddleware,customAsync(UserController.searchUser));
 router.post("/login",customAsync(UserController.loginUser));
 router.get("/logout",customAsync(UserController.logoutUser));
-router.post("/update/:id",customAsync(UserController.update));
-router.get("/delete/:id",customAsync(UserController.delete));
+router.post("/update/:id",isAdminMiddleware,customAsync(UserController.update));
+router.get("/toggleAdmin/:id",isAdminMiddleware,customAsync(UserController.toggleAdminStatus));
+router.get("/delete/:id",isAdminMiddleware,customAsync(UserController.delete));
 // router.get("/:id",customAsync(UserController.fetchById));
 module.exports = router;

@@ -106,13 +106,12 @@ module.exports = class OrderService {
     }
     static updateOrder=async (order,condition)=>{
         let query=`UPDATE courier_tracker.orders SET `;
-        console.log(order);
-            for(let key in order){
-                query+=` ${key}="${order[key]}",`;
-            }
-            query=query.slice(0,-1);
-            query+=` WHERE ${condition.key}=${condition.value}`
-            console.log(query);
+        for(let key in order){
+            query+=` ${key}="${order[key]}",`;
+        }
+        query=query.slice(0,-1);
+        query+=` WHERE ${condition.key}=${condition.value}`
+        console.log(query);
         try{
             await db.query(query);
             query =`SELECT * FROM courier_tracker.orders WHERE ${condition.key}=${condition.value}`

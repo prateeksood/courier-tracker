@@ -321,6 +321,15 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
 .table-row .cell a i{
     border-radius: 50%;
 }
+#revoke-admin{
+    background: red;
+}
+#make-admin{
+    background: green;
+}
+.normal a{
+    border-radius: 10px !important ;
+}
 .update-box-holder{
     width:100%;
     display: flex;
@@ -330,6 +339,16 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     padding:10px;
     margin-top: 20px;
     border-radius: 10px;
+}
+.mark-delivered-holder{
+    width:350px;
+    display: flex;
+    padding-top: 20px;
+    margin-left:10px;
+}
+.mark-delivered-holder label{
+    color:#ED6733;
+    margin-left:10px;
 }
 .add-holder{
     width:350px;
@@ -353,6 +372,7 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     border:none;
     background: #ED6733;
     color:#fff;
+    cursor: pointer;
 }
 .delete-holder{
     width:350px;
@@ -422,6 +442,34 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     padding-right: 30px;
     color:#777;
 
+}
+.text-holder select optgroup{
+    background:#ED6733;
+    color:#fff;
+    font-style:normal;
+    font-weight:normal;
+    }
+
+/* ==========================Order Details onabove timeline================================================ */
+.details-holder{
+    width:100%;
+    box-shadow: 1px 1px 10px 1px #ddd;
+    padding:10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+.details-holder .detail{
+    display: flex;
+    padding: 10px;
+}
+.details-holder .detail .label{
+    flex:1;
+    font-weight: bolder;
+    border-right: 2px solid #eee;
+}
+.details-holder .detail .value{
+    padding-left: 10px;
+    flex:6;
 }
 /* ==========================Order Timeline=========================================== */
 .timeline-holder{

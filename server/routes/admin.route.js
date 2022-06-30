@@ -17,7 +17,6 @@ router.get("/users", async (request, response, next)=> {
 });
 router.get("/couriers", async (request, response, next)=> {
     const allCouriers =await OrderService.fetchAllOrders();
-    console.log(allCouriers);
     response.render("pages/admin-couriers",{
         activeTab:"couriers",
         user:request.user,

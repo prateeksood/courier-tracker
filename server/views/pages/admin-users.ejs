@@ -34,10 +34,10 @@
                 <div class="right-top-bar"></div>
                 <div class="content-holder">
                     <div class="search-box-holder">
-                        <div class="search-holder">
-                            <input type="text" name="serach" id="search" placeholder="Tracking id / Mobile Number / Email">
-                            <button>Track</button>
-                        </div>
+                        <form class="search-holder" action="/user/search" method="post">
+                            <input type="text" name="search" id="search" placeholder="User id / Mobile Number / Email">
+                            <button>Search</button>
+                        </form>
                     </div>
                     <div class="search-results">
                         <div class="table">
@@ -55,10 +55,12 @@
                                     <div class="cell"><%=user.name%></div>
                                     <div class="cell"><%=user.email%></div>
                                     <div class="cell"><%=user.contactNumber%></div>
-                                    <div class="cell">
-                                        <a href="#"><i class="fa fa-search"></i></a>
-                                        <a href="#"><i class="fa fa-pencil"></i></a>
-                                        <a href="#"><i class="fa fa-trash"></i></a>
+                                    <div class="cell normal">
+                                       <%if(!user.isAdmin){%> 
+                                            <a href="/user/toggleAdmin/<%=user.id%>?isAdmin=1" id="make-admin">Make Admin</a>
+                                        <%}else{%>
+                                            <a href="/user/toggleAdmin/<%=user.id%>?isAdmin=0"  id="revoke-admin">Revoke Admin</a>
+                                        <%}%>
                                     </div>
                                 </div>
 
