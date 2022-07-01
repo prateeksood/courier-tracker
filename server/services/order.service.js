@@ -25,7 +25,6 @@ module.exports = class OrderService {
             if(i>=1)
                 query+=`OR ${condition.key} in ("${condition.value}") `;
         });
-        console.log(query);
         try{
             let foundOrders=await db.query(query);
             return foundOrders;
@@ -111,7 +110,6 @@ module.exports = class OrderService {
         }
         query=query.slice(0,-1);
         query+=` WHERE ${condition.key}=${condition.value}`
-        console.log(query);
         try{
             await db.query(query);
             query =`SELECT * FROM courier_tracker.orders WHERE ${condition.key}=${condition.value}`

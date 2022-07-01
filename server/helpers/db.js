@@ -1,10 +1,16 @@
 const mysql = require('mysql2');
+const { password } = require('../validation/user.validation');
 
 require("dotenv").config();
 
 class Database {
     constructor(config) {
-        this.poolCluster = mysql.createPoolCluster();
+        let clusterConfig = {
+            // defaultSelector: 'ORDER',
+            defaultSelector: 'RR',
+            removeNodeErrorCount:2
+        };
+        this.poolCluster = mysql.createPoolCluster(clusterConfig );
         config.nodes.forEach(node => {
             this.poolCluster.add(node.name, {
                 host: node.host,
@@ -14,10 +20,45 @@ class Database {
                 charset: config.charset
             });
         });
-        this.poolCluster.on('remove', function (nodeId) {
-            console.log('REMOVED NODE : ' + nodeId); // nodeId = SLAVE1 
+        this.poolCluster.on('remove', (nodeId) =>{
+            console.log('REMOVED NODE : ' + nodeId); 
+            let interval=setInterval(()=>{
+                let node={}
+                if(nodeId==="node_1"){
+                    node=config.nodes[0];
+                }
+                else if(nodeId==="node_2"){
+                    node=config.nodes[1];
+                }
+                else if(nodeId==="node_3"){
+                    node=config.nodes[2];
+                }
+                else{
+                    console.log(`Invalid node id ${nodeId}`);
+                    return;
+                }
+                console.log(`Attempting to add node: ${node.name}`);
+                try{
+
+                    this.poolCluster.add(node.name, {
+                            host: node.host,
+                        database: config.database,
+                        user: node.user,
+                        password: node.password,
+                        charset: config.charset
+                    })
+                    if(this.poolCluster._nodes[nodeId]){
+                        console.log(`Successfully added node ${nodeId}  to poolCluster`);
+                        clearInterval(interval);
+                    }else{
+                        console.log(`Failed to add node ${nodeId} to poolCluster`);
+                    }
+                }
+                catch(err){
+                    console.log(err);
+                }
+            },20000)
         });
-        // this.connection = mysql.createConnection( config );
     }
     async init() {
         try {
@@ -70,36 +111,40 @@ class Database {
             console.log("Done Checking and creating tables !");
         }
         catch (err) {
-            console.log("Error creating tables: " + err.stack);
+            console.log("Error creating tables: " + err);
         }
     }
+    clusterStatus(){
+        return this.poolCluster._nodes;
+    }
     query(sql, args) {
-        // return new Promise((resolve, reject) => {
-        //     this.connection.query(sql, args, (err, rows) => {
-        //         if (err)
-        //             return reject(err);
-        //         resolve(rows);
-        //     });
-        // });
         return new Promise((resolve, reject) => {
             this.poolCluster.getConnection((err, connection)=>{ 
                 if (err) {
-                    return reject(err);
+                    return reject(`connection error:${err}`);
                 } else {
-                    connection.query(sql, args,function(err, rows) {
-                        if (err) {
-                            return reject(err);
-                        }
-                        resolve(rows);
+                    try{
+                        connection.query(sql, args,function(err, rows) {
+                            if (err) {
+                                throw err;
+                            }
+                            resolve(rows);
+                        });
+                    }
+                    catch (err) {
+                        reject(err);
+                    }
+                    finally {
                         connection.release();
-                    });
+                    }
+                    
                 }
             });
         });
     }
     close() {
         return new Promise((resolve, reject) => {
-            this.connection.end(err => {
+            this.poolCluster.end(err => {
                 if (err)
                     return reject(err);
                 resolve();
@@ -134,5 +179,5 @@ let db = new Database({
     database: 'courier_tracker',
     charset: 'utf8mb4'
 });
-console.log(db);
+
 module.exports = db;

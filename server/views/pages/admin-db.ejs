@@ -36,24 +36,78 @@
                     <div class="tools">
                         <!-- <div class="tools-heading">Tools</div> -->
                             <div class="tools-holder">
-                                <div class="tool-container">
-                                    <div class="tool" id="tool-1">
-                                        <div class="tool-img"><i class="fa fa-user"></i></div>
-                                        <div class="tool-title">Approve Users</div>
-                                    </div>
-                                </div>
-                                <div class="tool-container">
-                                    <div class="tool" id="tool-2">
-                                        <div class="tool-img"><i class="fa fa-archive"></i></div>
-                                        <div class="tool-title">Update Order</div>
-                                    </div>
-                                </div>
-                                <div class="tool-container">
-                                    <div class="tool" id="tool-3">
-                                        <div class="tool-img"><i class="fa fa-cogs"></i></div>
-                                        <div class="tool-title">Database Tools</div>
-                                    </div>
-                                </div>
+                                        <div class="tool-container">
+                                            <div class="tool" id="tool-1">
+                                                <div class="tool-img"><i class="fa fa-cogs"></i></div>
+                                                <div class="tool-title">node_1</div>
+                                                
+                                            </div>
+                                            <div class="tool-info">
+                                                <%if(cluster.hasOwnProperty("node_1")){%>
+                                                    <%if(cluster.node_1.errorCount>0){%>
+                                                       <div class="yellow">
+                                                            Reconnection...(attempt <%=cluster.node_1.errorCount%>)
+                                                        </div>
+                                                    <%}else{%>
+                                                        <div class="green">
+                                                            Online
+                                                        </div>
+                                                    <%}%>
+                                                <%}else{%>
+                                                    <div class="red">
+                                                        Offline
+                                                    </div>
+                                                <%}%>
+                                            </div>
+                                        </div>
+                                        <div class="tool-container">
+                                            <div class="tool" id="tool-2">
+                                                <div class="tool-img"><i class="fa fa-cogs"></i></div>
+                                                <div class="tool-title">node_2</div>
+                                            </div>
+                                            <div class="tool-info">
+                                                <%if(cluster.hasOwnProperty("node_2")){%>
+                                                    <%if(cluster.node_2.errorCount>0){%>
+                                                       <div class="yellow">
+                                                            Reconnection...(attempt <%=cluster.node_2.errorCount%>)
+                                                        </div>
+                                                    <%}else{%>
+                                                        <div class="green">
+                                                            Online
+                                                        </div>
+                                                    <%}%>
+                                                <%}else{%>
+                                                    <div class="red">
+                                                        Offline
+                                                    </div>
+                                                <%}%>
+
+                                            </div>
+                                        </div>
+                                        <div class="tool-container">
+                                            <div class="tool" id="tool-3">
+                                                <div class="tool-img"><i class="fa fa-cogs"></i></div>
+                                                <div class="tool-title">node_3</div>
+                                            </div>
+                                            <div class="tool-info">
+                                                <%if(cluster.hasOwnProperty("node_3")){%>
+                                                    <%if(cluster.node_3.errorCount>0){%>
+                                                       <div class="yellow">
+                                                            Reconnection...(attempt <%=cluster.node_3.errorCount%>)
+                                                        </div>
+                                                    <%}else{%>
+                                                        <div class="green">
+                                                            Online
+                                                        </div>
+                                                    <%}%>
+                                                <%}else{%>
+                                                    <div class="red">
+                                                        Offline
+                                                    </div>
+                                                <%}%>
+                                                
+                                            </div>
+                                        </div>
                             </div>
                     </div>
                 </div>

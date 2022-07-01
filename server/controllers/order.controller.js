@@ -2,6 +2,10 @@ const ExpressError = require("../helpers/ExpressError");
 const OrderService = require("../services/order.service");
 const UserService = require("../services/user.service");
 const { update } = require("./user.controller");
+const cities= require("../helpers/cities");
+const sanitize = require("../helpers/sanitize");
+const commonValidation = require("../validation/common.validation");
+const orderValidation = require("../validation/order.validation");
 module.exports = class orderController {
   static async fetch(request, response, next) {
     const foundOrders = await OrderService.fetchAllOrders();
@@ -12,8 +16,12 @@ module.exports = class orderController {
 
   }
   static async fetchById(request, response, next) {
-    const foundOrder = await OrderService.fetchOrdersByParam({ key: "id", value: request.params.id });
-    const orderLocations = await OrderService.fetchOrderLocationsByParam({ key: "orderId", value: request.params.id });
+    if(!commonValidation.numeric.test(request.params.id )){
+      request.flash("error", "id can only be numeric");
+      return response.redirect("/");
+    }
+    const foundOrder = await OrderService.fetchOrdersByParam({ key: "id", value:sanitize(request.params.id) });
+    const orderLocations = await OrderService.fetchOrderLocationsByParam({ key: "orderId", value: sanitize(request.params.id) });
     const months=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     orderLocations.forEach(orderLocation=>{
       orderLocation.dateString=`At 
@@ -25,27 +33,34 @@ module.exports = class orderController {
                   ${String(new Date(Date.parse(orderLocation.time)).getFullYear())}
                 `;
     })
-    if (foundOrder.length<=0)
-      throw new ExpressError("No orders found",400);
+    if (foundOrder.length<=0){
+      request.flash("error", "No orders found with the specified id");
+      return response.redirect("/");
+    }
     response.render("pages/single-courier",{
       order:foundOrder[0],
       orderLocations,
-      user:request.user
+      user:request.user,
+      cities
     })
 
   }
   static async searchOrder(request, response, next) {
-    console.log(request.body)
+    
     if(!request.body.search||request.body.search===""){
       request.flash("error",`Kindly enter a valid search input`);
       return response.redirect("/admin/couriers");
     }
+    if(!commonValidation.alphaNumericplusSymbols.test(request.body.search )){
+      request.flash("error","Input can only contain letters, numbers and special character (@ ,$ ,! ,%, & ,* ,# ,? ,. ,_ )");
+      return response.redirect("/admin/couriers");
+    }
     const conditions=[
-      { key: "id", value: request.body.search },
-      { key: "senderEmail", value:request.body.search  },
-      { key: "senderContactNumber", value: request.body.search  },
-      { key: "receiverEmail", value: request.body.search  },
-      { key: "receiverContactNumber", value:request.body.search  },
+      { key: "id", value: sanitize(request.body.search) },
+      { key: "senderEmail", value:sanitize(request.body.search)  },
+      { key: "senderContactNumber", value: sanitize(request.body.search)  },
+      { key: "receiverEmail", value: sanitize(request.body.search)  },
+      { key: "receiverContactNumber", value:sanitize(request.body.search)  },
     ]
     const foundOrders = await OrderService.fetchOrdersByParams(conditions);
     if (foundOrders.length<=0){
@@ -65,12 +80,16 @@ module.exports = class orderController {
       request.flash("error",`Kindly enter a valid tracking Id`);
       return response.redirect("/");
     }
-    const foundOrder = await OrderService.fetchOrdersByParam({ key: "id", value: request.body.search });
+    if(!commonValidation.numeric.test(request.body.search )){
+      request.flash("error","Tracking Id can only be numeric");
+      return response.redirect("/");
+    }
+    const foundOrder = await OrderService.fetchOrdersByParam({ key: "id", value:sanitize( request.body.search )});
     if (foundOrder.length<=0){
       request.flash("error",`Invalid tracking Id`);
       return response.redirect("/");
     }
-    const orderLocations = await OrderService.fetchOrderLocationsByParam({ key: "orderId", value: request.body.search });
+    const orderLocations = await OrderService.fetchOrderLocationsByParam({ key: "orderId", value:sanitize( request.body.search )});
     const months=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     orderLocations.forEach(orderLocation=>{
       orderLocation.dateString=`At 
@@ -91,10 +110,31 @@ module.exports = class orderController {
   }
   static async create(request, response, next) {
     let data = request.body;
-    data.senderId=request.user.id;
-    data.senderEmail=request.user.email;
-    data.senderContactNumber=request.user.contactNumber;
-    const receiver=await UserService.fetchUsersByParam({key:"email",value:data.receiverEmail});
+    data.senderId=sanitize(request.user.id);
+    data.senderEmail=sanitize(request.user.email);
+    data.senderContactNumber=sanitize(request.user.contactNumber);
+    const {name,origin,destination,senderEmail,receiverEmail,senderContactNumber,receiverContactNumber}=data;
+    let message;
+    if(!orderValidation.name.test(name)){
+      message="Name can only contain letters, numbers and special characters, and must be 4-50 characters long";
+    }
+    else if(!orderValidation.email.test(senderEmail)||!orderValidation.email.test(receiverEmail)){
+      message="Inavlid email format"
+    }
+    else if(!orderValidation.contactNumber.test(senderContactNumber)||!orderValidation.contactNumber.test(receiverContactNumber)){
+      message="Inavlid contact number format";
+    }
+    else if(commonValidation.alphaNumericplusSymbols.test(origin)){
+      message="Inavlid origin city format";
+    }
+    else if(commonValidation.alphaNumericplusSymbols.test(destination)){
+      message="Inavlid destination city format";
+    }
+    if (message){
+      request.flash("error",message);
+      response.redirect("/user/couriers/new");
+    }
+    const receiver=await UserService.fetchUsersByParam({key:"email",value:sanitize(data.receiverEmail)});
     if(receiver.length>0){
       data.receiverId=receiver[0].id;
     }
@@ -114,7 +154,7 @@ module.exports = class orderController {
     }
   }
   static async fetchLocationsById(request, response, next) {
-    const condition = { key: "orderId", value: request.params.id };
+    const condition = { key: "orderId", value: sanitize(request.params.id) };
     const foundLocations = await OrderService.fetchOrderLocationsByParam(condition);
     if (foundLocations.length<=0)
       response.status(400).json({ message: "No orders found" });
@@ -123,7 +163,11 @@ module.exports = class orderController {
 
   }
   static async updateLocation(request, response, next) {
-    const orderId=request.params.id;
+    if(!commonValidation.numeric.test(request.params.id )){
+      request.flash("error","id can only be numeric");
+      return response.redirect(`/order/couriers/`);
+    }
+    const orderId=sanitize(request.params.id);
     let updatedOrder;
     const order=await OrderService.fetchOrdersByParam({key:"id",value:orderId});
     if(order.length>0){
@@ -131,11 +175,11 @@ module.exports = class orderController {
       let data={};
       data.id = order[0].id;
       data.previousLocation=order[0].currentLocation;
-      data.currentLocation=request.body.location;
+      data.currentLocation=sanitize(request.body.location);
       await OrderService.updateLocation(data);
       updatedOrder =await OrderService.updateOrder(
         {
-          currentLocation:request.body.location,
+          currentLocation:sanitize(request.body.location),
           isDelivered:delivered
         },
         {
@@ -151,7 +195,7 @@ module.exports = class orderController {
 
   static async update(request, response, next) {
     const data = request.body;
-    const condition = { key: "id", value: request.params.id };
+    const condition = { key: "id", value:sanitize( request.params.id )};
     const updatedOrder = await OrderService.updateOrder(data, condition);
     if (updatedOrder.length <= 0)
       response.status(400).json({ message: "Unable to update order." });
@@ -161,7 +205,7 @@ module.exports = class orderController {
   }
 
   static async delete(request, response, next) {
-    const condition = { key: "id", value: request.params.id };
+    const condition = { key: "id", value:sanitize( request.params.id )};
     const deletedOrder = await OrderService.deleteOrder(condition);
     if (deletedOrder.affectedRows === 0)
       response.status(400).json({ message: "Unable to delete order." });

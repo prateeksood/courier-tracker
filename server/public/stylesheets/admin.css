@@ -202,24 +202,39 @@
 .tool-container{
     box-shadow: -1px 1px 10px 1px #ddd;
     padding:10px;
-    height:150px;
-    width: 150px;
-    border-radius: 50%;
+    height:250px;
+    width: 250px;
+    border-radius: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
+.tool-container .tool-info{
+    padding-top: 10px;
+    font-weight: 900;
+}
+.tool-container .tool-info .yellow{
+    color: rgb(230, 230, 108);
+}
+.tool-container .tool-info .green{
+    color: rgb(70, 239, 70);
+}
+.tool-container .tool-info .red{
+    color:red;
+}
 .tool{
     background: #ED6733;
-    height: 100%;
-    width: 100%;
+    height: 75%;
+    width: 75%;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     color:white;
+    font-size: 1.5rem;
 }
 #tool-1{
     background: #67ECEF;
@@ -364,6 +379,21 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     border-bottom-left-radius: 50px;
     border:none;
 }
+.add-holder select{
+    width: 75%;
+    padding: 10px;
+    border-radius: 50px;
+    border:none;
+    padding-right: 30px;
+    color:#777;
+
+}
+.add-holder select optgroup{
+    background:#ED6733;
+    color:#fff;
+    font-style:normal;
+    font-weight:normal;
+    }
 .add-holder button{
     flex: 1 0 0;
     padding: 10px;

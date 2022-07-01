@@ -37,7 +37,16 @@
                         <form class="update-box-holder" action="/order/location/update/<%=order.id%>" method="post">
                             
                             <div class="add-holder">
-                                <input type="text" name="location" id="new_loc" placeholder="Add new location">
+                                <select name="location" id="location">
+                                    <option value="" disabled selected>Select current location</option>
+                                    <%for(key in cities){%>
+                                        <optgroup label="<%=key%>"></optgroup>
+                                            <%cities[key].forEach(city=>{%> 
+                                                <option value="<%=city%>"><%=city%></option>
+                                            <%})%>
+                                        </optgroup>
+                                    <%}%>
+                                </select>
                                 <button type="submit">Add</button>
                             </div>
                             <div class="mark-delivered-holder">
