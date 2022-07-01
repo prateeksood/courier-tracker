@@ -105,7 +105,8 @@ module.exports = class orderController {
     response.render("pages/search-results",{
       order:foundOrder[0],
       orderLocations,
-      user:request.user
+      user:request.user,
+      cities
     })
   }
   static async create(request, response, next) {
@@ -165,7 +166,11 @@ module.exports = class orderController {
   static async updateLocation(request, response, next) {
     if(!commonValidation.numeric.test(request.params.id )){
       request.flash("error","id can only be numeric");
-      return response.redirect(`/order/couriers/`);
+      return response.redirect(`/`);
+    }
+    if(!request.body.location ||!commonValidation.alphaNumericplusSymbols.test(request.body.location )){
+      request.flash("error","Invalid city name");
+      return response.redirect(`/order/${request.params.id}`);
     }
     const orderId=sanitize(request.params.id);
     let updatedOrder;
