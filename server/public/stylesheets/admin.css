@@ -587,3 +587,24 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     background: #ddd;
 }
 /* ================================ */
+@media only screen  and (max-width: 500px) {
+    .table-header,.table-row{
+        flex-direction: column;
+    }
+    .tools-holder{
+        justify-content: center;
+    }
+    .text-holder,.done-holder,.search-holder{
+        width:100%;
+        max-width: 350px;
+    }
+    .search-holder{
+        overflow: hidden;
+    }
+    .search-holder input{
+        width:75%;
+    }
+    .search-holder button{
+        width:25%;
+    }
+}

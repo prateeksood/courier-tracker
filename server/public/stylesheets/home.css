@@ -253,7 +253,9 @@ body{
 }
 .links{
     list-style: none;
-    
+}
+.q-links{
+    text-align: center;
 }
 .links .link a{
     color: #555;
@@ -285,4 +287,96 @@ body{
     padding-inline: 20px;
     font-weight: 900;
     cursor: pointer;
+}
+
+@media only screen  and (max-width: 900px) {
+    .header .nav{
+        grid-template-areas:
+            "a"
+            "b";
+        align-items: start;
+        justify-items: center;
+        grid-template-columns: 1fr;
+    }
+    .nav .logo-holder{
+        grid-area: a;
+        width: 100%;
+        text-align: center;
+    }
+    .nav .nav-holder{
+        grid-area: b;
+        width: 100%;
+    }
+    .banner{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .container .banner .banner-right,.container .banner .banner-left{
+        padding:30px 0px;
+    }
+    .container .banner .banner-right{
+        margin-right: 100px;
+    }
+    .banner .banner-right video{
+        width:300px
+    }
+    .main-content .steps-holder{
+        padding-top: 60vh;
+    }
+    .footer-content{
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-about,.links{
+        padding-bottom: 20px;
+    }
+    .footer-img-holder img{
+       width: 100%;
+    }
+    .footer-about,.footer-contact-us,.footer-links{
+        width: 100%;
+    }
+    .q-links{
+        text-align: left;
+    }
+}
+@media only screen  and (max-width: 500px) {
+    
+    .container .banner{
+       padding-inline: 10px;
+    }
+    .banner .banner-right video{
+        width:250px
+    }
+    .banner-left-lead-text{
+        font-size: 2rem;
+        margin-bottom: 30px;
+        font-weight: 900;
+    }
+    .banner-left-follow-text{
+        font-size: 1rem;
+        color: #777;
+        margin-bottom: 80px;
+    }
+    .tracker-holder{
+        width:200px;
+    }
+    .tracker-holder #tracking-input,.tracker-holder #tracking-btn{
+        padding: 10px;
+    }
+    .main-content .steps-holder{
+        padding-top: 120vh;
+    }
+    .steps-holder .card-holder .card{
+        width:200px;
+        padding: 20px;
+        min-height: 300px;
+    }
+    .steps-holder .card-holder .card .icon{
+        font-size: 2.5rem;
+    }
+    .steps-holder .card-holder .card .card-head{
+        font-size: 1.2rem;
+    }
 }
