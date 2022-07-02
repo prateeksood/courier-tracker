@@ -258,6 +258,19 @@ background: linear-gradient(to bottom right, #9203AC, #CD5316);
     font-size: 2rem;
     padding-bottom: 10px;
 }
+.back-arrow-holder{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.back-arrow-holder i{
+    padding-right: 20px;
+    color:#ED6733
+}
+.back-arrow-holder .search-query{
+    color:#777;
+    font-size: 1.5rem;
+}
 .search-box-holder{
     width:100%;
     box-shadow: 1px 1px 10px 1px #ddd;

@@ -57,7 +57,7 @@ class Database {
                 catch(err){
                     console.log(err);
                 }
-            },20000)
+            },60000)
         });
     }
     async init() {

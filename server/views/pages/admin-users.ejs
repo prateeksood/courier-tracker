@@ -33,9 +33,20 @@
             <div class="right-section">
                 <div class="right-top-bar"></div>
                 <div class="content-holder">
+                    <%if(locals.query){%>
+                        <div class="back-arrow-holder">
+                            <a href="/<%=from%>">
+                                <i class="fa fa-arrow-left fa-3x"></i>
+                            </a>
+                            <div class="search-query">
+                                Showing search results for: <%=query%>
+                            </div>
+                        </div>
+                    <%}%>
                     <div class="search-box-holder">
                         <form class="search-holder" action="/user/search" method="post">
-                            <input type="text" name="search" id="search" placeholder="User id / Mobile Number / Email">
+                            <input type="text" name="search" id="search" placeholder="User id / Mobile Number / Email / Name">
+                            <input type="hidden" name="from" value="admin/users" id="">
                             <button>Search</button>
                         </form>
                     </div>

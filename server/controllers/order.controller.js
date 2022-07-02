@@ -38,6 +38,7 @@ module.exports = class orderController {
       return response.redirect("/");
     }
     response.render("pages/single-courier",{
+      type:request.query.from,
       order:foundOrder[0],
       orderLocations,
       user:request.user,
@@ -69,6 +70,8 @@ module.exports = class orderController {
     }
     else{
       response.render("pages/admin-couriers",{
+          query:request.body.search,
+          from:request.body.from,
           activeTab:"couriers",
           user:request.user,
           orders:foundOrders
@@ -125,15 +128,17 @@ module.exports = class orderController {
     else if(!orderValidation.contactNumber.test(senderContactNumber)||!orderValidation.contactNumber.test(receiverContactNumber)){
       message="Inavlid contact number format";
     }
-    else if(commonValidation.alphaNumericplusSymbols.test(origin)){
+    else if(!commonValidation.alphaNumericplusSymbols.test(origin)){
+      console.log(origin);
       message="Inavlid origin city format";
     }
-    else if(commonValidation.alphaNumericplusSymbols.test(destination)){
+    else if(!commonValidation.alphaNumericplusSymbols.test(destination)){
       message="Inavlid destination city format";
     }
     if (message){
       request.flash("error",message);
       response.redirect("/user/couriers/new");
+      return;
     }
     const receiver=await UserService.fetchUsersByParam({key:"email",value:sanitize(data.receiverEmail)});
     if(receiver.length>0){

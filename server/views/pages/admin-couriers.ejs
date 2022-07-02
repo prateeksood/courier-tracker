@@ -33,10 +33,20 @@
             <div class="right-section">
                 <div class="right-top-bar"></div>
                 <div class="content-holder">
-                    
+                    <%if(locals.query){%>
+                        <div class="back-arrow-holder">
+                            <a href="/<%=from%>">
+                                <i class="fa fa-arrow-left fa-3x"></i>
+                            </a>
+                            <div class="search-query">
+                                Showing search results for: <%=query%>
+                            </div>
+                        </div>
+                    <%}%>
                     <div class="search-box-holder">
                         <form class="search-holder" action="/order/search%>" method="post">
                             <input type="text" name="search" id="search" placeholder="Tracking id / Mobile Number / Email">
+                            <input type="hidden" name="from" value="admin/couriers" id="">
                             <button type="submit">Search</button>
                         </form>
                     </div>
@@ -56,9 +66,9 @@
                                     <div class="cell"><%=courier.origin%></div>
                                     <div class="cell"><%=courier.destination%></div>
                                     <div class="cell">
-                                        <a href="/order/<%=courier.id%>"><i class="fa fa-search"></i></a>
+                                        <a href="/order/<%=courier.id%>?from=admin-courier"><i class="fa fa-search"></i></a>
                                         <%if(!courier.isDelivered){%>
-                                            <a href="/order/<%=courier.id%>"><i class="fa fa-plus"></i></a>
+                                            <a href="/order/<%=courier.id%>?from=admin-courier"><i class="fa fa-plus"></i></a>
                                         <%}%>
                                     </div>
                                 </div>

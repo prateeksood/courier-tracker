@@ -32,6 +32,7 @@ module.exports = class userController {
         const conditions = [
             { key: "id", value: sanitize(request.body.search) },
             { key: "email", value: sanitize(request.body.search) },
+            { key: "name", value: sanitize(request.body.search) },
             { key: "ContactNumber", value: sanitize(request.body.search) }
         ]
         const foundUsers = await UserService.fetchUsersByParams(conditions);
@@ -41,6 +42,8 @@ module.exports = class userController {
         }
         else {
             response.render("pages/admin-users", {
+                from:request.body.from,
+                query:request.body.search,
                 activeTab: "users",
                 user: request.user,
                 allUsers: foundUsers

@@ -5,6 +5,10 @@
 }
 a{
     text-decoration: none;
+    cursor: pointer;
+}
+button{
+    cursor: pointer;
 }
 body{
     font-family: "Roboto", sans-serif;
